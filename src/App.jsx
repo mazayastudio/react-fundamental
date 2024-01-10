@@ -1,4 +1,6 @@
-import PropTypes from 'prop-types';
+import * as React from "react";
+import PropTypes from "prop-types";
+
 const App = () => {
 	const stories = [
 		{
@@ -42,7 +44,6 @@ List.propTypes = {
 	list: PropTypes.array.isRequired,
 };
 
-
 const Item = (props) => (
 	<li>
 		<span>
@@ -64,10 +65,19 @@ Item.propTypes = {
 };
 
 const Search = () => {
+	const [searchTerm, setSearchTerm] = React.useState("");
+
+	const handleChange = (evt) => {
+		setSearchTerm(evt.target.value);
+	};
+
 	return (
 		<div>
 			<label htmlFor="search">Search:</label>
-			<input type="text" id="search" />
+			<input type="text" id="search" onChange={handleChange} />
+			<p>
+				Searching for <strong>{searchTerm} </strong>
+			</p>
 		</div>
 	);
 };
